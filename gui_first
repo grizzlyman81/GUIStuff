@@ -1,0 +1,50 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Sep 21 10:30:04 2020
+
+@author: bjopet
+"""
+
+import sys
+from PyQt5.QtWidgets import *
+
+class Window(QWidget):
+    def __init__(self):
+        super().__init__()
+        
+        self.setWindowTitle("You need to log in!!!!")
+        self.setGeometry(50,50,350,350)
+        
+        self.UI()
+        
+        
+    def UI(self):
+        self.text1 = QLabel("This is for your own security",self)
+        self.nameTextBox = QLineEdit(self)
+        self.nameTextBox.setPlaceholderText("Enter username")
+        self.nameTextBox.move(120,50)
+        self.passTextBox = QLineEdit(self)
+        self.passTextBox.setPlaceholderText("Enter password")
+        self.passTextBox.setEchoMode(QLineEdit.Password)
+        self.passTextBox.move(120,80)
+        button = QPushButton("Save",self)
+        button.move(140,130)
+        button.clicked.connect(self.getValues)
+        
+        self.show()
+        
+    def getValues(self):
+        name = self.nameTextBox.text()
+        password = self.passTextBox.text()
+        self.text1.setText(password)
+        print(password)
+
+        
+def main():
+    App = QApplication(sys.argv)
+    windows = Window()
+    sys.exit(App.exec_())
+    
+if __name__ == '__main__':
+    main()
